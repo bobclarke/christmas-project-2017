@@ -3,3 +3,4 @@
 *backup
 .terraform
 *.retry
+**/node_modules/
