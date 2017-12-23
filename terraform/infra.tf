@@ -1,3 +1,5 @@
+
+# Set up provider details
 provider "aws" {
   access_key = "${var.access_key}"
   secret_key = "${var.secret_key}"
@@ -5,10 +7,11 @@ provider "aws" {
 }
 
 # Create a VPC to launch our instances into
-resource "aws_vpc" "default" {
+# set the VPC name to christmas-2017
+resource "aws_vpc" "christmas-2017" {
   cidr_block = "10.0.0.0/16"
   tags {
-		Name = "Jenkins"
+		Name = "christmas-2017"
 	}
 }
 
