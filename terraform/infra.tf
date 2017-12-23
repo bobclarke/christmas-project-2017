@@ -74,6 +74,13 @@ resource "aws_instance" "ansible_server" {
     destination = "/tmp/script.sh"
   }
 
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/script.sh",
+      "/tmp/script.sh",
+    ]
+  }
+
   tags {
     Name = "ansible-server"
   }
