@@ -2,7 +2,7 @@
 
 ## Overview
 
-Build a set of VMS I'm aws with terrarform
+Build a bunch of VMS on aws with terrarform
 
 Set these up as a kubernetes cluster
 
