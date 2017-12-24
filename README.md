@@ -35,6 +35,7 @@ Once the instances are built Terraform invokes Ansible to install Python and an 
 > access_key = "your_aws_access_key"
 
 > key_name = "your_aws_ssh_key_name"  
+- run terraform init to download provider plugins
 - run terraform plan to check your config
 - if all is well run terraform apply
 
