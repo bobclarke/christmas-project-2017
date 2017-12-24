@@ -25,3 +25,7 @@ sudo yum install -y \
   device-mapper-persistent-data \
   lvm2 \
   docker-ce
+
+# Start services
+systemctl enable ntpd && systemctl start ntpd && systemctl status ntpd
+systemctl docker ntpd && systemctl start docker && systemctl status docker

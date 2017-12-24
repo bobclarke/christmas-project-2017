@@ -96,6 +96,41 @@ resource "aws_instance" "ansible_server" {
   }
 }
 
+resource "aws_instance" "kube_controller" {
+  ami           = "${lookup(var.aws_amis, var.aws_region)}"
+  instance_type = "${var.instance_type}"
+  key_name = "${var.key_name}"
+  vpc_security_group_ids = ["${aws_security_group.default.id}"]
+  subnet_id = "${aws_subnet.subnet_1.id}"
+  availability_zone = "${var.aws_region}a"
+
+  tags {
+    Name = "kube-controller"
+  }
+
+  provisioner "file" {
+    source      = "common_setup.sh"
+    destination = "/tmp/common_setup.sh"
+    connection {
+      type     = "ssh"
+      user     = "centos"
+      private_key  = "${file("${var.private_key_path}")}"
+    }
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/common_setup.sh",
+      "/tmp/common_setup.sh"
+    ]
+    connection {
+      type     = "ssh"
+      user     = "centos"
+      private_key  = "${file("${var.private_key_path}")}"
+    }
+  }
+}
+
 resource "aws_route_table_association" "aa" {
   subnet_id      = "${aws_subnet.subnet_1.id}"
   route_table_id = "${aws_vpc.kube.main_route_table_id}"
