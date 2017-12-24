@@ -34,7 +34,7 @@ resource "aws_subnet" "subnet_1" {
   vpc_id                  = "${aws_vpc.kube.id}"
   cidr_block              = "10.0.1.0/24"
   map_public_ip_on_launch = true
-  availability_zone = "us-east-1a"
+  availability_zone = "${var.aws_region}a"
   tags 	{
     Name = "kube-subnet-1"
   }
@@ -42,7 +42,7 @@ resource "aws_subnet" "subnet_1" {
 
 # Our default security group to access our instances over SSH and HTTP
 resource "aws_security_group" "default" {
-  name        = "terraform_example"
+  name        = "kube_sec_group"
   description = "Used in the terraform"
   vpc_id      = "${aws_vpc.kube.id}"
 
@@ -67,71 +67,32 @@ resource "aws_instance" "ansible_server" {
   key_name = "${var.key_name}"
   vpc_security_group_ids = ["${aws_security_group.default.id}"]
   subnet_id = "${aws_subnet.subnet_1.id}"
-  availability_zone = "us-east-1a"
-
-  provisioner "file" {
-    source      = "install_ansible.sh"
-    destination = "/tmp/script.sh"
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "chmod +x /tmp/script.sh",
-      "/tmp/script.sh",
-    ]
-  }
+  availability_zone = "${var.aws_region}a"
 
   tags {
     Name = "ansible-server"
   }
-}
 
-
-resource "aws_instance" "kube_controller" {
-  ami           = "${lookup(var.aws_amis, var.aws_region)}"
-  instance_type = "${var.instance_type}"
-  key_name = "${var.key_name}"
-  vpc_security_group_ids = ["${aws_security_group.default.id}"]
-  subnet_id = "${aws_subnet.subnet_1.id}"
-  availability_zone = "us-east-1a"
-  tags {
-    Name = "kube-controller"
+	provisioner "file" {
+    source      = "common_setup.sh"
+    destination = "/tmp/common_setup.sh"
+    connection {
+      type     = "ssh"
+      user     = "centos"
+      private_key  = "${file("${var.private_key_path}")}"
+    }
   }
-}
 
-resource "aws_instance" "kube_node_1" {
-  ami           = "${lookup(var.aws_amis, var.aws_region)}"
-  instance_type = "${var.instance_type}"
-  key_name = "${var.key_name}"
-  vpc_security_group_ids = ["${aws_security_group.default.id}"]
-  subnet_id = "${aws_subnet.subnet_1.id}"
-  availability_zone = "us-east-1a"
-  tags {
-    Name = "kube-node-1"
-  }
-}
-
-resource "aws_instance" "kube_node_2" {
-  ami           = "${lookup(var.aws_amis, var.aws_region)}"
-  instance_type = "${var.instance_type}"
-  key_name = "${var.key_name}"
-  vpc_security_group_ids = ["${aws_security_group.default.id}"]
-  subnet_id = "${aws_subnet.subnet_1.id}"
-  availability_zone = "us-east-1a"
-  tags {
-    Name = "kube-node-2"
-  }
-}
-
-resource "aws_instance" "kube_node_3" {
-  ami           = "${lookup(var.aws_amis, var.aws_region)}"
-  instance_type = "${var.instance_type}"
-  key_name = "${var.key_name}"
-  vpc_security_group_ids = ["${aws_security_group.default.id}"]
-  subnet_id = "${aws_subnet.subnet_1.id}"
-  availability_zone = "us-east-1a"
-  tags {
-    Name = "kube-node-3"
+	provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/common_setup.sh",
+      "/tmp/common_setup.sh"
+    ]
+    connection {
+      type     = "ssh"
+      user     = "centos"
+      private_key  = "${file("${var.private_key_path}")}"
+    }
   }
 }
 
