@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# Populate hosts file
+cat <<EOF >> /etc/hosts
+# 
+# Entries for Kubernetes
+#
+10.0.1.100	ansible
+10.0.1.101	kube_controller
+10.0.1.102	kube_node_1
+10.0.1.103	kube_node_2
+10.0.1.104	kube_node_3
+EOF
+
 # Remove stuff we don't need
 sudo yum remove \
   docker \

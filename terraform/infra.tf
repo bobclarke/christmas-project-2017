@@ -68,6 +68,7 @@ resource "aws_instance" "ansible_server" {
   vpc_security_group_ids = ["${aws_security_group.default.id}"]
   subnet_id = "${aws_subnet.subnet_1.id}"
   availability_zone = "${var.aws_region}a"
+  private_ip = "10.0.1.100"
 
   tags {
     Name = "ansible-server"
@@ -103,6 +104,7 @@ resource "aws_instance" "kube_controller" {
   vpc_security_group_ids = ["${aws_security_group.default.id}"]
   subnet_id = "${aws_subnet.subnet_1.id}"
   availability_zone = "${var.aws_region}a"
+  private_ip = "10.0.1.101"
 
   tags {
     Name = "kube-controller"
