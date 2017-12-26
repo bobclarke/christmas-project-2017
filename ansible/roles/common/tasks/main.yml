@@ -1,5 +1,32 @@
+---
+- authorized_key:
+    user: ansible
+    state: present
+    key: "{{ lookup('file', '/home/ansible/.ssh/id_rsa.pub') }}"
 
-- name: install git
+- yum_repository:
+    name: epel
+    description: EPEL YUM repo
+    baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+
+- yum_repository:
+    name: virt7-docker-common-release
+    description: docker repo
+    baseurl: http://cbs.centos.org/repos/virt7-docker-common-release/x86_64/os/
+
+- name: install etcd and kubernetes from the virt7-docker-common-release repo
   yum:
-    name: git
-    state: latest
+    name: decker-ce
+    state: absent
+
+- name: install etcd and kubernetes from the virt7-docker-common-release repo
+  yum:
+    name: "{{ item }}"
+    enablerepo: virt7-docker-common-release
+    state: present
+    update_cache: true
+  with_items:
+    - etcd
+    - kubernetes
+    - docker
+
