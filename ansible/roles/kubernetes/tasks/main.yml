@@ -17,3 +17,11 @@
     owner: root
     group: wheel
     mode: 0644
+
+- name: copy kubernetes apiserver file
+  copy:
+    src: apiserver
+    dest: /etc/kubernetes
+    owner: root
+    group: wheel
+    mode: 0644
