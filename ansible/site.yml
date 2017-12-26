@@ -4,9 +4,9 @@
   become: true
   roles:
     - common
-    - kubernetes
 
 - hosts: controller
   become: true
   roles:
     - etcd
+    - kubernetes-master
