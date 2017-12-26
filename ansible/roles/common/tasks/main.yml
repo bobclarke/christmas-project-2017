@@ -19,6 +19,15 @@
     name: decker-ce
     state: absent
 
+- yum:
+    name: "{{ item }}"
+    state: present
+    update_cache: true
+  with_items:
+    - yum-utils
+    - device-mapper-persistent-data
+    - lvm2
+
 - name: install etcd and kubernetes from the virt7-docker-common-release repo
   yum:
     name: "{{ item }}"
@@ -29,4 +38,3 @@
     - etcd
     - kubernetes
     - docker
-
