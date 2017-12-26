@@ -1,0 +1,11 @@
+---
+- name: install etcd and kubernetes from the virt7-docker-common-release repo
+  yum:
+    name: "{{ item }}"
+    enablerepo: virt7-docker-common-release
+    state: present
+    update_cache: true
+  with_items:
+    - etcd
+    - kubernetes
+    - docker
