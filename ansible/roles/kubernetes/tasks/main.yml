@@ -25,3 +25,13 @@
     owner: root
     group: wheel
     mode: 0644
+
+- name: enable and start kubernetes services
+  systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: True
+  with_items:
+    - kube-apiserver
+    - kube-controller-manager
+    - kube-scheduler

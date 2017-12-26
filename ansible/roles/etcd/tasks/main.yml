@@ -7,3 +7,10 @@
     owner: root
     group: wheel
     mode: 0644
+
+- name: enable and start etcd service
+  systemd:
+    name: etcd
+    state: started
+    enabled: True
+
