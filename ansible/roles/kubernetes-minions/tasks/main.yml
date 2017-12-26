@@ -6,7 +6,6 @@
     state: present
     update_cache: true
   with_items:
-    - etcd
     - kubernetes
     - docker
 
