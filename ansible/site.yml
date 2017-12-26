@@ -5,6 +5,11 @@
   roles:
     - common
 
+- hosts: minions
+  become: true
+  roles:
+    - kubernetes-minion
+
 - hosts: controller
   become: true
   roles:
