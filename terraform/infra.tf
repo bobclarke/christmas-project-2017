@@ -133,6 +133,114 @@ resource "aws_instance" "kube_controller" {
   }
 }
 
+resource "aws_instance" "kube_minion_1" {
+  ami           = "${lookup(var.aws_amis, var.aws_region)}"
+  instance_type = "${var.instance_type}"
+  key_name = "${var.key_name}"
+  vpc_security_group_ids = ["${aws_security_group.default.id}"]
+  subnet_id = "${aws_subnet.subnet_1.id}"
+  availability_zone = "${var.aws_region}a"
+  private_ip = "10.0.1.111"
+
+  tags {
+    Name = "kube-minion-1"
+  }
+
+  provisioner "file" {
+    source      = "common_setup.sh"
+    destination = "/tmp/common_setup.sh"
+    connection {
+      type     = "ssh"
+      user     = "centos"
+      private_key  = "${file("${var.private_key_path}")}"
+    }
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/common_setup.sh",
+      "/tmp/common_setup.sh"
+    ]
+    connection {
+      type     = "ssh"
+      user     = "centos"
+      private_key  = "${file("${var.private_key_path}")}"
+    }
+  }
+}
+
+resource "aws_instance" "kube_minion_2" {
+  ami           = "${lookup(var.aws_amis, var.aws_region)}"
+  instance_type = "${var.instance_type}"
+  key_name = "${var.key_name}"
+  vpc_security_group_ids = ["${aws_security_group.default.id}"]
+  subnet_id = "${aws_subnet.subnet_1.id}"
+  availability_zone = "${var.aws_region}a"
+  private_ip = "10.0.1.112"
+
+  tags {
+    Name = "kube-minion-2"
+  }
+
+  provisioner "file" {
+    source      = "common_setup.sh"
+    destination = "/tmp/common_setup.sh"
+    connection {
+      type     = "ssh"
+      user     = "centos"
+      private_key  = "${file("${var.private_key_path}")}"
+    }
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/common_setup.sh",
+      "/tmp/common_setup.sh"
+    ]
+    connection {
+      type     = "ssh"
+      user     = "centos"
+      private_key  = "${file("${var.private_key_path}")}"
+    }
+  }
+}
+
+resource "aws_instance" "kube_minion_3" {
+  ami           = "${lookup(var.aws_amis, var.aws_region)}"
+  instance_type = "${var.instance_type}"
+  key_name = "${var.key_name}"
+  vpc_security_group_ids = ["${aws_security_group.default.id}"]
+  subnet_id = "${aws_subnet.subnet_1.id}"
+  availability_zone = "${var.aws_region}a"
+  private_ip = "10.0.1.113"
+
+  tags {
+    Name = "kube-minion-3"
+  }
+
+  provisioner "file" {
+    source      = "common_setup.sh"
+    destination = "/tmp/common_setup.sh"
+    connection {
+      type     = "ssh"
+      user     = "centos"
+      private_key  = "${file("${var.private_key_path}")}"
+    }
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/common_setup.sh",
+      "/tmp/common_setup.sh"
+    ]
+    connection {
+      type     = "ssh"
+      user     = "centos"
+      private_key  = "${file("${var.private_key_path}")}"
+    }
+  }
+}
+
 resource "aws_route_table_association" "aa" {
   subnet_id      = "${aws_subnet.subnet_1.id}"
   route_table_id = "${aws_vpc.kube.main_route_table_id}"

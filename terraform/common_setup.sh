@@ -10,25 +10,15 @@ sudo yum remove \
   docker-ce
 
 # Setup yum
-sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-sudo yum-config-manager --enable docker-ce-edge
-sudo yum-config-manager --enable docker-ce-test
-sudo yum-config-manager --disable docker-ce-edge
+#sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+#sudo yum-config-manager --enable docker-ce-edge
+#sudo yum-config-manager --enable docker-ce-test
+#sudo yum-config-manager --disable docker-ce-edge
 
 # Install packages
 sudo yum install -y \
-  epel-release \
   git \
-  ntp \
   ansible \
-  yum-utils \
-  device-mapper-persistent-data \
-  lvm2 \
-  docker-ce
-
-# Start services
-#systemctl enable ntpd && systemctl start ntpd && systemctl status ntpd
-#systemctl docker ntpd && systemctl start docker && systemctl status docker
 
 sleep 3
 
