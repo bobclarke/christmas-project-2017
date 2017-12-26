@@ -9,3 +9,10 @@
     - etcd
     - kubernetes
     - docker
+
+- copy:
+    src: config
+    dest: /etc/kubernetes
+    owner: root
+    group: wheel
+    mode: 0644
