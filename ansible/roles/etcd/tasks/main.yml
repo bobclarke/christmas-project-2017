@@ -1,0 +1,9 @@
+---
+
+- name: copy etcd config file
+  copy:
+    src: etcd.config
+    dest: /etc/etcd
+    owner: root
+    group: wheel
+    mode: 0644

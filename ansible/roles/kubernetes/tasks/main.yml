@@ -10,7 +10,8 @@
     - kubernetes
     - docker
 
-- copy:
+- name: copy kubernetes config file
+  copy:
     src: config
     dest: /etc/kubernetes
     owner: root
