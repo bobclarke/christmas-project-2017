@@ -2,7 +2,7 @@
 
 - name: copy etcd config file
   copy:
-    src: etcd.config
+    src: etcd.conf
     dest: /etc/etcd
     owner: root
     group: wheel
