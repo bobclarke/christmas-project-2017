@@ -26,7 +26,7 @@
     group: wheel
     mode: 0644
 
-- name: enable and start kubernetes services
+- name: enable and start kubernetes master services
   systemd:
     name: "{{ item }}"
     state: started
