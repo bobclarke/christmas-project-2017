@@ -28,8 +28,9 @@
 - name: enable and start kubernetes minion services
   systemd:
     name: "{{ item }}"
-    state: started
+    state: restarted
     enabled: True
+    daemon_reload: yes
   with_items:
     - kube-proxy
     - kubelet

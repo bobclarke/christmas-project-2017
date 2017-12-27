@@ -29,7 +29,8 @@
 - name: enable and start kubernetes master services
   systemd:
     name: "{{ item }}"
-    state: started
+    state: restarted
+    daemon_reload: yes
     enabled: True
   with_items:
     - kube-apiserver
