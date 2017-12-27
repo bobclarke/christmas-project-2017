@@ -1,7 +1,7 @@
 [controller]
-10.0.1.101
+kube_controller
 
 [minions]
-10.0.1.111
-10.0.1.112
-10.0.1.113
+kube_node_1
+kube_node_2
+kube_node_3
