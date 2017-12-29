@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: red
+  name: red-deployment
 spec:
   replicas: 3
   template:
@@ -10,7 +10,7 @@ spec:
         colour: red
     spec:
       containers:
-      - name: red
+      - name: red-container
         image: bobclarke/node-colour-env:v0.1
         env:
         - name: "COLOUR"
@@ -21,7 +21,7 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: green
+  name: green-deployment
 spec:
   replicas: 3
   template:
@@ -30,7 +30,7 @@ spec:
         colour: green
     spec:
       containers:
-      - name: green
+      - name: green-container
         image: bobclarke/node-colour-env:v0.1
         env:
         - name: "COLOUR"
@@ -41,7 +41,7 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: blue
+  name: blue-deployment
 spec:
   replicas: 3
   template:
@@ -50,7 +50,7 @@ spec:
         colour: blue
     spec:
       containers:
-      - name: red
+      - name: blue-container
         image: bobclarke/node-colour-env:v0.1
         env:
         - name: "COLOUR"
