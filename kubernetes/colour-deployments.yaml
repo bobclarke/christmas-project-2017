@@ -1,0 +1,59 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: red
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        colour: red
+    spec:
+      containers:
+      - name: red
+        image: bobclarke/node-colour-env:v0.1
+        env:
+        - name: "COLOUR"
+          value: "red"
+        ports:
+        - containerPort: 8080
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: green
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        colour: green
+    spec:
+      containers:
+      - name: green
+        image: bobclarke/node-colour-env:v0.1
+        env:
+        - name: "COLOUR"
+          value: "green"
+        ports:
+        - containerPort: 8080
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: blue
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        colour: blue
+    spec:
+      containers:
+      - name: red
+        image: bobclarke/node-colour-env:v0.1
+        env:
+        - name: "COLOUR"
+          value: "blue"
+        ports:
+        - containerPort: 8080
