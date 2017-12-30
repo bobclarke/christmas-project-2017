@@ -2,43 +2,33 @@
 
 ## Overview
 
-Build a bunch of VMS on aws with terrarform
+Build a bunch of VMS on AWS using Terrarform
 
-Set these up as a kubernetes cluster
+Set these up as a kubernetes cluster using Ansible
 
-On this cluster run a bunch of containers for Jenkins, splunk, sonar, prometheus, selenium grid (ie everything you  would need for automated testing)
+Deploy and test app accross multiple nodes 
 
-write a reference app (nothing fancy and I haven't yet decided which language) and test it on this platform.
-
-The aim is to:
-* Build on the BDD testing learned recently.
-
-* learn kubernetes and while I'm at it throw in a bit of Splunk and prometheus
-
-* try out Spinaker and chaos monkey if I get time
-
+Create a Kubernetes Service to front the test app
 
 ## How to use
-
-We use terraform to build a VPC with two EC2 instances and associated subnets in two availablity zones. Also adds an internet gateway, security groups and an EFS share with mount points in the two avaialblity zones
-
-Once the instances are built Terraform invokes Ansible to install Python and an NFS client on the two instances.
-
-- Install the AWS CLI tools on your local workstation (http://docs.aws.amazon.com/cli/latest/userguide/installing.html)
-- Install Terraform and Ansible on your local workstation
-- Create an AWS ssh keypair (or choose an exiting one to use)
+- Install git and terraform on your local workstation
 - Clone this repo
+- Create an AWS ssh keypair (or choose an exiting one to use)
 - change the value of private_key_path in variables.tf to point at your private ssh key
 - Create a terraform.tfvars file with the following contents
-> secret_key = "your_aws_secret_key"
-
-> access_key = "your_aws_access_key"
-
-> key_name = "your_aws_ssh_key_name"  
+--  secret_key = "your_aws_secret_key"
+--  access_key = "your_aws_access_key"
+--  key_name = "your_aws_ssh_key_name"  
 - run terraform init to download provider plugins
 - run terraform plan to check your config
 - if all is well run terraform apply
+- this will provision the following servers:
+--  an ansible server with an internal IP of 10.0.1.100 and an AWS label of ansible-server
+--  a kubernetes master with an internal IP of 10.0.1.101 and an AWS label of kube-controller
+--  three Kubernetes minions with internal IPs of 10.0.1.111, 112 and 113 and AWS labels of kube_minion_1, kube_minion_2 and kube_minion_3 respectively 
+- when complete, log on to the Ansible server, su to ansible (password is ansible) and clone this repository
+- cd to the ansible directory and run ansible-playbook -i hosts site.yml 
 
-### Todo
-Mount the EFS file system on the EC2 instances
-
+## TODO 
+- enable password based ssh login on all servers 
+- generate and distribute ssh keys for ansible connectivty 
