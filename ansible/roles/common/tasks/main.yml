@@ -7,10 +7,10 @@
     group: root
     mode: 0644
 
-- authorized_key:
-    user: ansible
-    state: present
-    key: "{{ lookup('file', '/home/ansible/.ssh/id_rsa.pub') }}"
+#- authorized_key:
+#    user: ansible
+#    state: present
+#    key: "{{ lookup('file', '/home/ansible/.ssh/id_rsa.pub') }}"
 
 - yum_repository:
     name: epel
