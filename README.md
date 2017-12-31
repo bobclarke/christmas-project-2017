@@ -22,9 +22,23 @@ Create a Kubernetes Service to front the test app
 * Run terraform init to download provider plugins
 * Run terraform plan to check your config
 * If all is well run terraform apply
-* This will provision the following servers:
-  *  an ansible server with an internal IP of 10.0.1.100 and an AWS label of ansible-server
-  *  a kubernetes master with an internal IP of 10.0.1.101 and an AWS label of kube-controller
-  *  three Kubernetes minions with internal IPs of 10.0.1.111, 112 and 113 and AWS labels of kube_minion_1, kube_minion_2 and kube_minion_3 respectively 
+* This will provision a VPC with the neccesary internet gateway, subnets, security groups etc, plus the following servers:
+  * Ansible server
+    * IP address: 10.0.1.10o  
+    * hostnames: ansible, ip-10-0-1-101
+  * Kubernetes master 
+    * IP address: 10.0.1.101  
+    * hostnames: kube_controller, ip-10-0-1-101
+  * Kubernetes minion 
+    * IP address: 10.0.1.111  
+    * hostnames: kube_minion_1, ip-10-0-1-111
+  * Kubernetes minion 
+    * IP address: 10.0.1.112  
+    * hostnames: kube_minion_2, ip-10-0-1-112
+  * Kubernetes minion 
+    * IP address: 10.0.1.113  
+    * hostnames: kube_minion_3, ip-10-0-1-113
+
 * When complete, log on to the Ansible server, su to ansible (password is ansible) and clone this repository
-* CD to the ansible directory and run __ansible-playbook -i hosts site.yml --ask-pass__ (the password is ansible)
+* cd to the ansible directory and run __ansible-playbook -i hosts site.yml --ask-pass__ (the password is ansible)
+* This will install, configure and start Kubernetes on the above servers
