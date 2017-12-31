@@ -36,6 +36,11 @@ sudo bash -c "cat > /etc/sudoers.d/10_ansible" << "EOF"
 ansible ALL=(ALL) NOPASSWD: ALL
 EOF
 
+# Create .ssh dir in readyness for terraform provisioner to copy keys 
+sudo mkdir /home/ansible/.ssh && sudo chown ansible /home/ansible/.ssh && sudo chmod 700 /home/ansible/.ssh
+
+# Enable password based ssh authentication (don't need to do this but want to for debugging)
+sudo sed -i "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd_config && sudo systemctl restart sshd
+
 # Todo 
-# Generate ssh keypair and distribute public key 
 # Invoke ansible auptmatically (maybe as a 2nd provisioner for the ansible master)

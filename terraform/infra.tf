@@ -95,6 +95,47 @@ resource "aws_instance" "ansible_server" {
       private_key  = "${file("${var.private_key_path}")}"
     }
   }
+
+/*
+  provisioner "local-exec" {
+    command = "rm -f id_rsa*"
+  }
+
+  provisioner "local-exec" {
+    command = "ssh-keygen -f id_rsa -t rsa -N ''"
+  }
+
+  provisioner "file" {
+    source      = "id_rsa"
+    destination = "/home/ansible/.ssh/"
+    connection {
+      type     = "ssh"
+      user     = "ansible"
+      password  = "ansible"
+    }
+  }
+
+  provisioner "file" {
+    source      = "id_rsa.pub"
+    destination = "/home/ansible/.ssh/"
+    connection {
+      type     = "ssh"
+      user     = "ansible"
+      password  = "ansible"
+    }
+  }
+
+	provisioner "remote-exec" {
+    inline = [
+      "cp /home/ansible/.ssh/id_rsa.pub /home/ansible/.ssh/authorized_keys"
+    ]
+    connection {
+      type     = "ssh"
+      user     = "ansible"
+      password  = "ansible"
+    }
+  }
+*/
 }
 
 resource "aws_instance" "kube_controller" {
