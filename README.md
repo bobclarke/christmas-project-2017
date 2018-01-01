@@ -46,5 +46,5 @@ Purpose:
     * hostname alias : kube_minion_3
 
 * When complete, log on to the Ansible server, su to ansible (password is ansible) and clone this repository
-* cd to the ansible directory and run __ansible-playbook -i hosts site.yml --ask-pass__ (the password is ansible)
+* cd to the ansible directory and run ***ansible-playbook -i hosts site.yml --ask-pass*** (the password is ansible)
 * This will install, configure and start Kubernetes and Etcd on the above servers
