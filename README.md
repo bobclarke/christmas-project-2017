@@ -5,7 +5,7 @@
 An educational project:
  
 Purpose: 
-* Provision up 5 Centos 7 VM's on AWS using Terrarform
+* Provision 5 Centos 7 VM's on AWS using Terrarform
 * Set these up as a kubernetes cluster using Ansible
 * Deploy and test app accross multiple nodes 
 * Create a Kubernetes Service to front the test app
