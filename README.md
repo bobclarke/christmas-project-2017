@@ -78,3 +78,4 @@ red-service     10.0.213.33    <nodes>       8888:31001/TCP   3m
 ```
 * You can now test each service in a browser by hitting any minion's public IP on either port 31001, 31002 or 31003
 * You'll notice that the service on port 31001 returns ```{"colour": "blue"}```, the one of port 31002 returns ```{"colour": "green"}``` and the one on port 31003 returns ```{"colour": "red"}```
+* Nothing amazing right now, i.e you've got three minions each running an instance of the red, green and blue app. However, the cool stuff happens when you reduce the instances of a app but are still able to hit it on any node. This is because we're fronting our app with a service.
