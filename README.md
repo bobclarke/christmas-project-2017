@@ -60,7 +60,7 @@ ip-10-0-1-113   Ready     5m
 ```
 * Whilst still logged into the kubernetes master as root, clone this repo. 
 * cd to the kubernetes directory
-* Run the command ***```kubectl create -f colour-deployments.yaml```***. The output should look similar to this: 
+* Run the command ***```kubectl create -f colour-deployments.yaml```***  The output should look similar to this: 
 ```
   deployment "red-deployment" created
   deployment "green-deployment" created
