@@ -75,6 +75,5 @@ blue-service    10.0.226.140   <nodes>       8888:31003/TCP   3m
 green-service   10.0.207.137   <nodes>       8888:31002/TCP   3m
 kubernetes      10.0.0.1       <none>        443/TCP          34m
 red-service     10.0.213.33    <nodes>       8888:31001/TCP   3m
-[root@ip-10-0-1-101 kubernetes]# 
-
 ```
+* You can now test each service in a browser by hitting any minion's public IP on either port 31001, 31002 or 31003
