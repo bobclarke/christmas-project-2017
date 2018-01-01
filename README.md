@@ -68,7 +68,7 @@ ip-10-0-1-113   Ready     5m
 ```
 * This has created 3 deployments each consisting of 3 replicas (i.e 3 pod for each of red, green amd blue) across the three minions. You can check this by running the commands ***```kubectl get deployments```*** and ***```kubectl describe deployments```***
 * To make these deployments available to the outside world, create a service for each by running ***```kubectl create -f colour-service.yaml```*** 
-* Check the status of each service by running ***```kubectl get services```***. The output should look something like this 
+* Check the status of each service by running ***```kubectl get services```*** The output should look something like this 
 ```
 NAME            CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
 blue-service    10.0.226.140   <nodes>       8888:31003/TCP   3m
