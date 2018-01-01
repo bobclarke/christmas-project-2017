@@ -60,4 +60,12 @@ ip-10-0-1-113   Ready     5m
 ```
 * Whilst still logged into the kubernetes master as root, clone this repo. 
 * cd to the kubernetes directory
-* 
+* Run the command ***```kubectl create -f colour-deployments.yaml```***. The output should look similar to this: 
+```
+  deployment "red-deployment" created
+  deployment "green-deployment" created
+  deployment "blue-deployment" created
+```
+* This has created a total of 9 pods (3 replicas for each of red, green amd blue) across the three minions. You can check this by running the commands ***```kubectl get deployments```*** and ***```kubectl describe deployments```***
+
+
