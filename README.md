@@ -11,6 +11,7 @@ Purpose:
 * Create a Kubernetes Service to front the test app
 
 ## How to use
+
 * Install git and terraform on your local workstation
 * Clone this repo
 * Create an AWS ssh keypair (or choose an exiting one to use)
