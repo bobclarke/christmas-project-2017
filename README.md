@@ -56,3 +56,4 @@ ip-10-0-1-111   Ready     5m
 ip-10-0-1-112   Ready     5m
 ip-10-0-1-113   Ready     5m
 ```
+* Whilst still logged into the kubernetes master as root, clone this repo. 
