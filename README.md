@@ -46,10 +46,10 @@ Purpose:
     * hostname alias : kube_minion_3
 
 * When complete, log on to the Ansible server, su to ansible (password is ansible) and clone this repository
-* cd to the ansible directory and run ***ansible-playbook -i hosts site.yml --ask-pass*** (the password is ansible)
+* cd to the <this project>/ansible directory and run ***ansible-playbook -i hosts site.yml --ask-pass*** (the password is ansible)
 * This will install, configure and start Kubernetes and Etcd on the above servers
 * When the playbook is complete logon to the Kubernetes master (the server labelled kube_controller in the AWS console) and sudo to root (no password required) 
-* Run the command ***kubectl get nodes*** to check whether our minions have joined the cluster, the output should look like this 
+* Check whether our minions have joined the cluster by running the command ```kubectl get nodes```. The output should look like this 
 ```
 NAME            STATUS    AGE
 ip-10-0-1-111   Ready     5m
@@ -57,3 +57,5 @@ ip-10-0-1-112   Ready     5m
 ip-10-0-1-113   Ready     5m
 ```
 * Whilst still logged into the kubernetes master as root, clone this repo. 
+* cd to the <this project>/kubernetes directory
+* 
