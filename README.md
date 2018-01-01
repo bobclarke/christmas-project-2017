@@ -77,3 +77,4 @@ kubernetes      10.0.0.1       <none>        443/TCP          34m
 red-service     10.0.213.33    <nodes>       8888:31001/TCP   3m
 ```
 * You can now test each service in a browser by hitting any minion's public IP on either port 31001, 31002 or 31003
+* You'll notice that the service on port 31001 returns ```{"colour": "blue"}```, the one of port 31002 returns ```{"colour": "green"}``` and the one on port 31003 returns ```{"colour": "red"}```
