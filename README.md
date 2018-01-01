@@ -66,6 +66,6 @@ ip-10-0-1-113   Ready     5m
   deployment "green-deployment" created
   deployment "blue-deployment" created
 ```
-* This has created a total of 9 pods (3 replicas for each of red, green amd blue) across the three minions. You can check this by running the commands ***```kubectl get deployments```*** and ***```kubectl describe deployments```***
-
+* This has created 3 deployments each consisting of 3 replicas (i.e 3 pod for each of red, green amd blue) across the three minions. You can check this by running the commands ***```kubectl get deployments```*** and ***```kubectl describe deployments```***
+* To make these deployments available to the outside world, create a service for each by running ***```kubectl create -f colour-service.yaml```*** 
 
