@@ -5,10 +5,10 @@
 An educational project:
  
 Purpose: 
-# Stands up 5 Centos 7 VM's on AWS using Terrarform
-# Set these up as a kubernetes cluster using Ansible
-# Deploy and test app accross multiple nodes 
-# Create a Kubernetes Service to front the test app
+* Provision up 5 Centos 7 VM's on AWS using Terrarform
+* Set these up as a kubernetes cluster using Ansible
+* Deploy and test app accross multiple nodes 
+* Create a Kubernetes Service to front the test app
 
 ## How to use
 * Install git and terraform on your local workstation
