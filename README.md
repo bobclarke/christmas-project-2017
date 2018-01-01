@@ -24,21 +24,26 @@ Create a Kubernetes Service to front the test app
 * If all is well run terraform apply
 * This will provision a VPC with the neccesary internet gateway, subnets, security groups etc, plus the following servers:
   * Ansible server
-    * IP address: 10.0.1.10o  
-    * hostnames: ansible, ip-10-0-1-101
+    * IP address: 10.0.1.100  
+    * hostname : 10-0-1-101
+    * hostname alias : ansible
   * Kubernetes master 
     * IP address: 10.0.1.101  
-    * hostnames: kube_controller, ip-10-0-1-101
+    * hostname : 10-0-1-101
+    * hostname alias : kube_controller
   * Kubernetes minion 
     * IP address: 10.0.1.111  
-    * hostnames: kube_minion_1, ip-10-0-1-111
+    * hostname : 10-0-1-111
+    * hostname alias : kube_minion_1
   * Kubernetes minion 
     * IP address: 10.0.1.112  
-    * hostnames: kube_minion_2, ip-10-0-1-112
+    * hostname : 10-0-1-112
+    * hostname alias : kube_minion_2
   * Kubernetes minion 
     * IP address: 10.0.1.113  
-    * hostnames: kube_minion_3, ip-10-0-1-113
+    * hostname : 10-0-1-113
+    * hostname alias : kube_minion_3
 
 * When complete, log on to the Ansible server, su to ansible (password is ansible) and clone this repository
 * cd to the ansible directory and run __ansible-playbook -i hosts site.yml --ask-pass__ (the password is ansible)
-* This will install, configure and start Kubernetes on the above servers
+* This will install, configure and start Kubernetes and Etcd on the above servers
